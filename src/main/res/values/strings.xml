@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Track Location</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="number">№ телефона</string>
+    <string name="name">Никнейм</string>
+    <string name="password_generate">Пароль</string>
+    <string name="password">Сгенерированный пароль</string>
+    <string name="password_button">Сгенерировать</string>
+    <string name="registration">Регистрация</string>
+    <string name="infoString">Введите данные</string>
+    <string name="infoStringPassword">Введите пароль</string>
+    <string name="infoStringNumber">Введите номер телефона</string>
+
+    <string name="hint">Номер существует</string>
+    <string name="contacts">Группы</string>
+    <string name="header_password">Обновить пароль</string>
+    <string name="login">Войти</string>
+    <string name="incorrect_number">Неверный номер</string>
+    <string name="incorrect_password">Неверный пароль</string>
+    <string name="home_navigation_menu">Главная</string>
+    <string name="logout_navigation_menu">Выход</string>
+    <string name="add_friend_tittle">Добавить друга</string>
+    <string name="add_group_tittle">Добавить группу</string>
+    <string name="add_friend">Добавить</string>
+    <string name="cancel_dialogfragment">Отмена</string>
+    <string name="group_dialogfragment">Группа</string>
+    <string name="succes">Друг добавлен успешно!</string>
+    <string name="succes_reset">Пароль обновлен!</string>
+    <string name="chanche">Замена</string>
+    <string name="chanche_passTittle">Введите пароль</string>
+    <string name="chanche_password">Смена пароля</string>
+    <string name="old_password">Пароль устарел</string>
+    <string name="trackMyLocation">Режим</string>
+    <string name="review">Просмотр на карте</string>
+    <string name="update">Обновить</string>
+    <string name="havefriend">Друг с этим номером уже существует</string>
+    <string name="loading_tittle">Загрузка данных</string>
+    <string name="loading_message">Пожалуйста, подождите</string>
+    <string name="internet_info">Для работы приложения включите интернет!</string>
+    <string name="gps_info">Для работы приложения включите GPS!</string>
+    <string name="lastentrytime">Время последнего захода </string>
+    <string name="about">О приложении</string>
+
+    <string name="deleteMarket">Удерживайте для удаления</string>
+    <string name="incorrect_password6symbols">Пароль должен состоять минимум из 6 символов!</string>
+
+</resources>

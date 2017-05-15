@@ -31,8 +31,8 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".Login_activity" />
-        <activity android:name=".Registration_activity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegistrationActivity" />
         <receiver android:name=".NotifAlarm" >
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />

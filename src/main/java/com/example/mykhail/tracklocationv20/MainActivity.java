@@ -3,7 +3,6 @@ package com.example.mykhail.tracklocationv20;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,7 +14,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -33,7 +31,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -64,6 +61,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -177,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }).start();
 
         if (isNeedLogin()) {
-            if (!checkInternetStatus() || !checkGPS()){
+            if (!checkInternetStatus() ){
 
                 if (!checkGPS()) {
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -224,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             else {
                 mStopThread = true;
-                startActivityForResult(new Intent(this, Login_activity.class),1);
+                startActivityForResult(new Intent(this, LoginActivity.class),1);
             }
         } else {
             mSharedPreferences = getPreferences(MODE_PRIVATE);
@@ -234,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (mUserPhoneNumber != null) {
 
-            if (checkInternetStatus() && checkGPS()) {
+            if (checkInternetStatus() ) {
                 mGoogleApiClient = new GoogleApiClient
                         .Builder(this)
                         .addApi(Places.GEO_DATA_API)
@@ -315,7 +313,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if(mTrackMyLocation.isChecked()){
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
                 Date date = new Date();
-                mFirebaseRef.child(mUserPhoneNumber).child(Constants.currentTime).setValue(dateFormat.format(date).toString());
+                mFirebaseRef.child(mUserPhoneNumber).child(Constants.currentTime).setValue(dateFormat.format(date));
             }
             mFirebaseRef.child(mUserPhoneNumber).child(Constants.STATUS).setValue("online");
             mUserGroups = mFirebaseManager.getUserGroups(mUserPhoneNumber);
@@ -335,7 +333,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if( mTrackMyLocation.isChecked()) {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss",Locale.getDefault());
                 Date date = new Date();
-                mFirebaseRef.child(mUserPhoneNumber).child(Constants.currentTime).setValue(dateFormat.format(date).toString());
+                mFirebaseRef.child(mUserPhoneNumber).child(Constants.currentTime).setValue(dateFormat.format(date));
             }
             mFirebaseRef.child(mUserPhoneNumber).child(Constants.STATUS).setValue("offline");
         }
@@ -373,7 +371,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (mGoogleMap != null)
                     mGoogleMap.clear();
                 mUserPhoneNumber = null;
-                startActivityForResult(new Intent(this, Login_activity.class), 1);
+                startActivityForResult(new Intent(this, LoginActivity.class), 1);
                 break;
             case R.id.navigation_item_changePassword:
                 mNavigationView.getMenu().getItem(0).setChecked(true);
@@ -418,6 +416,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Marker selectedUser = mGoogleMap.addMarker(new MarkerOptions()
                                 .position(new LatLng(getUserLocation(mSelectedUsers.get(i), dataSnapshot).getLatitude(), getUserLocation(mSelectedUsers.get(i), dataSnapshot).getLongitude()))
                                 .title(mSelectedUsers.get(i))
+                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_marker))
                                 .snippet(getString(R.string.deleteMarket)));
                         selectedUser.showInfoWindow();
                         mGoogleMap.animateCamera(CameraUpdateFactory
@@ -446,7 +445,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mFirebaseRef.child(mUserPhoneNumber).child("second").setValue(location.getLongitude());
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
             Date date = new Date();
-            mFirebaseRef.child(mUserPhoneNumber).child(Constants.currentTime).setValue(dateFormat.format(date).toString());
+            mFirebaseRef.child(mUserPhoneNumber).child(Constants.currentTime).setValue(dateFormat.format(date));
         }
     }
 

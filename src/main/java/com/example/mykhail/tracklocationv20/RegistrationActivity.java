@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Registration_activity extends AppCompatActivity implements View.OnClickListener, Validator.ValidationListener {
+public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener, Validator.ValidationListener {
     private Toolbar mToolbar;
     private Firebase mFirebaseRef;
 
@@ -89,21 +89,21 @@ public class Registration_activity extends AppCompatActivity implements View.OnC
         super.onBackPressed();
 
     }
-
+    ///кун долбоеб
     public void registration() {
         if (listNumbers != null) {
             if (!listNumbers.contains(mEditTextNumber.getText().toString())) {
                 mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.PASSWORD).setValue(mEditTextPassword.getText().toString());
                 mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.LONGITUDE).setValue(30);
                 mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.LATITUDE).setValue(30);
-                mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.GROUPS).child("1").setValue("Друзья");
-                mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.GROUPS).child("2").setValue("Семья");
-                mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.GROUPS).child("3").setValue("Работа");
+                mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.GROUPS).child("1").setValue("Легкові");
+                mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.GROUPS).child("2").setValue("Полугрузові");
+                mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.GROUPS).child("3").setValue("Великовантажні");
                 mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.STATUS).setValue("online");
 
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 Date date = new Date();
-                mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.currentTime).setValue(date.toString());
+                mFirebaseRef.child(mEditTextNumber.getText().toString()).child(Constants.currentTime).setValue( dateFormat.format(date));
 
                 Intent intent = getIntent();
                 intent.putExtra("number", mEditTextNumber.getText().toString());
